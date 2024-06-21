@@ -6,15 +6,17 @@ function App() {
   // let counter = 5;
 
   const addValue = () => {
-    counter += 1;
-    setCounter(counter);
-    console.log(counter);
-    console.log("clicked", Math.random());
+    if (counter >= 10) {
+      alert("Counter cannot be greater than 10");
+      return;
+    }
+    setCounter(counter + 1);
   };
 
   const removeValue = () => {
     if (counter <= 0) {
       alert("counter cannot not be less than 0");
+      return;
     }
     setCounter(counter - 1);
   };
