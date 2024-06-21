@@ -1,9 +1,13 @@
-// const Button = ({ name, onClick }) => {
-//   return (
-//     <button className="bg-cyan-200 px-4 py-2 m-2 rounded-md" onClick={onClick}>
-//       {name}
-//     </button>
-//   );
-// };
+const Button = ({ color, onClick }) => {
+  return (
+    <button
+      className="bg-gray-700 rounded-lg px-4 py-2 m-2"
+      style={{ background: color }}
+      onClick={() => onClick(color)}
+    >
+      Change to {color}
+    </button>
+  );
+};
 
-// export default Button;
+export default Button;
