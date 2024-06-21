@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import "./index.css";
+
 function App() {
   let [counter, setCounter] = useState(5);
   const username = "chai aur react";
@@ -23,7 +25,7 @@ function App() {
 
   return (
     <>
-      <h1>Hello {username}</h1>
+      <h1 className="text-8xl font-bold underline">Hello {username}</h1>
       <h3>Counter Value: {counter}</h3>
       <button onClick={addValue}>Add Value {counter}</button>
       <br />
