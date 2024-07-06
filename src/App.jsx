@@ -1,38 +1,41 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { ThemeProvider } from "./contexts/theme";
+import ThemeBtn from "./components/ThemeBtn";
+import Card from "./components/Card";
 import "./index.css";
 
-import Button from "./components/Button";
 function App() {
-  const [currentBg, setCurrentBg] = useState("black");
-  const bgButtonArray = [
-    "#FF5733",
-    "#82E0AA",
-    "#3498DB",
-    "#9B59B6",
-    "#F39C12",
-    "#1ABC9C",
-    "#E74C3C",
-    "#2ECC71",
-    "#F1C40F",
-  ];
+  const [themeMode, setThemeMode] = useState("light");
 
-  const changeBackground = (color) => {
-    setCurrentBg(color);
+  const lightTheme = () => {
+    setThemeMode("light");
   };
 
+  const darkTheme = () => {
+    setThemeMode("dark");
+  };
+
+  // actual change in theme
+
+  useEffect(() => {
+    document.querySelector("html").classList.remove("light", "dark");
+    document.querySelector("html").classList.add(themeMode);
+  }, [themeMode]);
+
   return (
-    <>
-      <div
-        className="w-screen h-screen flex justify-center items-end"
-        style={{ backgroundColor: currentBg }}
-      >
-        <div className="mb-10 text-white">
-          {bgButtonArray.map((bg, index) => (
-            <Button key={index} color={bg} onClick={changeBackground} />
-          ))}
+    <ThemeProvider value={{ themeMode, lightTheme, darkTheme }}>
+      <div className="flex flex-wrap min-h-screen items-center">
+        <div className="w-full">
+          <div className="w-full max-w-sm mx-auto flex justify-end mb-4">
+            <ThemeBtn />
+          </div>
+
+          <div className="w-full max-w-sm mx-auto">
+            <Card />
+          </div>
         </div>
       </div>
-    </>
+    </ThemeProvider>
   );
 }
 
